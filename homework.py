@@ -1,24 +1,23 @@
-from decimal import Decimal as dc
+from dataclasses import dataclass
 
 
+@dataclass
 class InfoMessage:
     """Информационное сообщение о тренировке."""
-    def __init__(self,
-                 training_type: str,
-                 duration: float,
-                 distance: float,
-                 speed: float,
-                 calories: float
-                 ) -> None:
-        self.MESSAGE = (f'Тип тренировки: {training_type}; '
-                        f'Длительность: {round(dc(duration), 3)} ч.; '
-                        f'Дистанция: {round(dc(distance),3)} км; '
-                        f'Ср. скорость: {round(dc(speed), 3)} км/ч; '
-                        f'Потрачено ккал: {round(dc(calories), 3)}.')
+    training_type: str
+    duration: float
+    distance: float
+    speed: float
+    calories: float
 
     def get_message(self) -> str:
         """Получить строку с сообщением."""
-        return(self.MESSAGE)
+        MESSAGE = (f'Тип тренировки: {self.training_type}; '
+                   f'Длительность: {self.duration :.3f} ч.; '
+                   f'Дистанция: {self.distance :.3f} км; '
+                   f'Ср. скорость: {self.speed :.3f} км/ч; '
+                   f'Потрачено ккал: {self.calories :.3f}.')
+        return(MESSAGE)
 
 
 class Training:
